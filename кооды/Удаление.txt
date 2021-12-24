@@ -1,0 +1,39 @@
+﻿ private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                MySqlCommand command = new MySqlCommand("SELECT techtable.idtechtable AS id, techtable.in_number AS Инвентарный_№, techtable.name_tech AS Информация_о_технике_и_характерристика, techtable.date_buy AS Дата_покупки, techtable.cost AS Цена, techtable.status AS Статус, techtable.date_write_off AS Дата_списания,  cabinet.number_cab AS Кабинет, view.name_view AS Вид, person.surname AS Фамилия  FROM techtable, cabinet, view, person WHERE techtable.idview = view.idview AND techtable.idcabinet = cabinet.idcabinet AND techtable.idperson = person.idperson", db.getConnection());
+                adapter.SelectCommand = command;
+
+                string in_numb = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                
+                MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                MySqlCommand command1 = new MySqlCommand("DELETE FROM `techtable` WHERE `in_number` = @lU", db.getConnection());
+                command1.Parameters.Add("@lU", MySqlDbType.VarChar).Value = in_numb;
+                adapter1.SelectCommand = command1;
+                
+
+
+
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet, "techtable");
+                adapter1.Fill(dataSet, "techtable");
+                dataSet.Tables["techtable"].Clear();
+                adapter.Fill(dataSet, "techtable");
+                DataRow dr = dataSet.Tables[0].NewRow();
+                dataSet.Tables[0].Rows.Add(dr);
+                dataGridView1.DataSource = dataSet.Tables["techtable"];
+                dataGridView1.AutoResizeColumns();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }

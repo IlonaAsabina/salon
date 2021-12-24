@@ -1,0 +1,33 @@
+  DB db = new DB();
+
+            try
+            {
+             
+               
+
+
+                MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                MySqlCommand command1 = new MySqlCommand("insert `workers` (`id_pos` `name`, `surname`, `login`, `pass`,`phone_worker`) VALUES (@0U ,@1U, @2U, @3U, @4U,@5U)", db.GetConnection());
+
+                adapter1.SelectCommand = command1;
+
+                string name = textBox1.Text;
+                string surname = textBox2.Text;
+
+                
+                string login = Lagin.Text;
+                string pass = Password.Text;
+                string phone_worker = textBox3.Text;
+                command1.Parameters.Add("@0U", MySqlDbType.VarChar).Value = " ";
+               command1.Parameters.Add("@1U", MySqlDbType.VarChar).Value = name;
+                command1.Parameters.Add("@2U", MySqlDbType.VarChar).Value = surname;
+                command1.Parameters.Add("@3U", MySqlDbType.VarChar).Value = login;
+                command1.Parameters.Add("@4U", MySqlDbType.VarChar).Value = pass;
+                command1.Parameters.Add("@5U", MySqlDbType.VarChar).Value = phone_worker;
+
+                DataSet Furry = new DataSet();
+                adapter1.Fill(Furry,"workers");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);

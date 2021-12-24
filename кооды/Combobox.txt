@@ -1,0 +1,69 @@
+private void LoadData()
+        {
+            try
+            {
+                
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                MySqlDataAdapter adapterP = new MySqlDataAdapter();
+                MySqlDataAdapter adapterV = new MySqlDataAdapter();
+                MySqlDataAdapter adapterC = new MySqlDataAdapter();
+
+                MySqlCommand command = new MySqlCommand("SELECT techtable.idtechtable AS id, techtable.in_number AS Инвентарный_№, techtable.name_tech AS Информация_о_технике_и_характерристика, techtable.date_buy AS Дата_покупки, techtable.cost AS Цена, techtable.status AS Статус, techtable.date_write_off AS Дата_списания,  cabinet.number_cab AS Кабинет, view.name_view AS Вид, person.surname AS Фамилия  FROM techtable, cabinet, view, person WHERE techtable.idview = view.idview AND techtable.idcabinet = cabinet.idcabinet AND techtable.idperson = person.idperson", db.getConnection());
+                adapter.SelectCommand = command;
+                MySqlCommand commandP = new MySqlCommand("SELECT `surname` FROM `person`", db.getConnection());
+                adapterP.SelectCommand = commandP;
+                MySqlCommand commandV = new MySqlCommand("SELECT `name_view` FROM `view`", db.getConnection());
+                adapterV.SelectCommand = commandV;
+                MySqlCommand commandC = new MySqlCommand("SELECT `number_cab` FROM `cabinet`", db.getConnection());
+                adapterC.SelectCommand = commandC;
+
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet, "techtable");
+                DataSet dataSetP = new DataSet();
+                adapterP.Fill(dataSetP, "person");
+                DataSet dataSetV = new DataSet();
+                adapterV.Fill(dataSetV, "view");
+                DataSet dataSetC = new DataSet();
+                adapterC.Fill(dataSetC, "cabinet");
+
+                DataRow dr = dataSet.Tables[0].NewRow();                
+                dataSet.Tables[0].Rows.Add(dr);
+
+                
+
+                dataGridView1.DataSource = dataSet.Tables["techtable"];
+                dataGridView1.AutoResizeColumns();
+
+                for (int i = 0; i < dataSetC.Tables["cabinet"].Rows.Count; i++)
+                {
+                    comboBox2.Items.Add(dataSetC.Tables["cabinet"].Rows[i]["number_cab"]);
+                }
+
+                //comboBox3.DataSource = dataSetP.Tables["person"];
+                for (int i = 0; i < dataSetP.Tables["person"].Rows.Count; i++)
+                {
+                    comboBox3.Items.Add(dataSetP.Tables["person"].Rows[i]["surname"]);
+                }
+
+
+                //comboBox4.DataSource = dataSetV.Tables["view"];
+                for (int i = 0; i < dataSetV.Tables["view"].Rows.Count; i++)
+                {
+                    comboBox4.Items.Add(dataSetV.Tables["view"].Rows[i]["name_view"]);
+                }
+
+                for (int i = 0; i < dataSetV.Tables["view"].Rows.Count; i++)
+                {
+                    comboBox1.Items.Add(dataSetV.Tables["view"].Rows[i]["name_view"]);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+
+        }

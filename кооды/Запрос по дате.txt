@@ -1,0 +1,66 @@
+ private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                
+               
+
+                MySqlCommand command = new MySqlCommand("SELECT techtable.idtechtable AS id, techtable.in_number AS Инвентарный_№, techtable.name_tech AS Информация_о_технике_и_характерристика, techtable.date_buy AS Дата_покупки, techtable.cost AS Цена, techtable.status AS Статус, techtable.date_write_off AS Дата_списания,  cabinet.number_cab AS Кабинет, view.name_view AS Вид, person.surname AS Фамилия  FROM techtable, cabinet, view, person WHERE techtable.idview = view.idview AND techtable.idcabinet = cabinet.idcabinet AND techtable.idperson = person.idperson AND techtable.date_buy >= @XU AND techtable.date_buy <= @YU", db.getConnection());
+                                
+                
+
+                string date1 = String.Format(dateTimePicker1.Value.ToString());
+
+                if (date1 != "")
+                {
+                    date1 = DateTime.Parse(date1).ToString("yyyyMMdd");
+                    //date_buy.ToShortDateString();
+                }
+                else
+                {
+                    date1 = null;
+                }
+
+                string date2 = String.Format(dateTimePicker2.Value.ToString());
+
+                if (date2 != "")
+                {
+                    date2 = DateTime.Parse(date2).ToString("yyyyMMdd");
+                    //date_buy.ToShortDateString();
+                }
+                else
+                {
+                    date2 = null;
+                }
+
+                
+
+                command.Parameters.Add("@XU", MySqlDbType.VarChar).Value = date1;
+                command.Parameters.Add("@YU", MySqlDbType.VarChar).Value = date2;
+                          
+                adapter.SelectCommand = command;
+                                             
+
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet, "techtable");
+                
+
+                DataRow dr = dataSet.Tables[0].NewRow();
+                dataSet.Tables[0].Rows.Add(dr);
+
+                dataGridView1.DataSource = null;
+
+                dataGridView1.DataSource = dataSet.Tables["techtable"];
+                dataGridView1.AutoResizeColumns();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }

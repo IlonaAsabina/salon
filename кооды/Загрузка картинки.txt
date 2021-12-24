@@ -1,0 +1,50 @@
+private void button1_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog1.ShowDialog();
+            string fn = this.openFileDialog1.FileName;
+            this.textBox1.Text = fn;
+            int n = fn.LastIndexOf('.');
+            string ext1 = fn.Substring(n + 1).ToUpper();
+            if (ext1 == "JPG")
+            {
+                this.pictureBox1.Image = System.Drawing.Image.FromFile(fn);
+            }
+            else
+            {
+                System.Drawing.Bitmap bm1 = new Bitmap(this.pictureBox1.Width,
+               this.pictureBox1.Height);
+                System.Drawing.Graphics gr = System.Drawing.Graphics.FromImage(bm1);
+                System.Drawing.Pen pen1 = new
+               System.Drawing.Pen(System.Drawing.Color.Red, 5);
+ 
+                gr.DrawLine(pen1, 0, 0, bm1.Width, bm1.Height);
+                gr.DrawLine(pen1, 0, bm1.Height, bm1.Width, 0);
+ 
+                this.pictureBox1.Image = bm1;
+            }
+        }
+
+private void button6_Click(object sender, EventArgs e)
+{
+   try
+   {
+      byte[] image = null;
+      pictureBox2.ImageLocation = textBox1.Text;
+      string filepath = textBox1.Text;
+      FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+      BinaryReader br = new BinaryReader(fs);
+      image = br.ReadBytes((int)fs.Length);
+      string sql = " INSERT INTO ImageTable(Image) VALUES(@Imgg)";
+      if (con.State != ConnectionState.Open)
+         con.Open();
+      SqlCommand cmd = new SqlCommand(sql, con);
+      cmd.Parameters.Add(new SqlParameter("@Imgg", image));
+      int x= cmd.ExecuteNonQuery();
+      con.Close();
+      MessageBox.Show(x.ToString() + "Image saved");
+   }
+}
+
+FileStream FS = new FileStream(filepath, FileMode.Open, FileAccess.Read); //create a file stream object associate to user selected file 
+        byte[] img = new byte[FS.Length]; //create a byte array with size of user select file stream length
+        FS.Read(img, 0, Convert.ToInt32(FS.Length));//read user selected file stream in to byte array

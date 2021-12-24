@@ -1,0 +1,117 @@
+﻿ private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                MySqlDataAdapter adapterC = new MySqlDataAdapter();
+                MySqlDataAdapter adapterV = new MySqlDataAdapter();
+                MySqlDataAdapter adapterP = new MySqlDataAdapter();
+                MySqlCommand commandC = new MySqlCommand("SELECT idcabinet FROM cabinet WHERE number_cab = @CU", db.getConnection());
+                MySqlCommand commandV = new MySqlCommand("SELECT idview FROM view WHERE name_view = @VU", db.getConnection());
+                MySqlCommand commandP = new MySqlCommand("SELECT idperson FROM person WHERE surname = @PU", db.getConnection());
+                MySqlCommand command = new MySqlCommand("SELECT techtable.idtechtable AS id, techtable.in_number AS Инвентарный_№, techtable.name_tech AS Информация_о_технике_и_характерристика, techtable.date_buy AS Дата_покупки, techtable.cost AS Цена, techtable.status AS Статус, techtable.date_write_off AS Дата_списания,  cabinet.number_cab AS Кабинет, view.name_view AS Вид, person.surname AS Фамилия  FROM techtable, cabinet, view, person WHERE techtable.idview = view.idview AND techtable.idcabinet = cabinet.idcabinet AND techtable.idperson = person.idperson", db.getConnection());
+
+                string cabinet1 = comboBox2.Items[comboBox2.SelectedIndex].ToString();
+                string person1 = comboBox3.Items[comboBox3.SelectedIndex].ToString();
+                string view1 = comboBox4.Items[comboBox4.SelectedIndex].ToString();
+                commandC.Parameters.Add("@CU", MySqlDbType.VarChar).Value = cabinet1;
+                commandV.Parameters.Add("@VU", MySqlDbType.VarChar).Value = view1;
+                commandP.Parameters.Add("@PU", MySqlDbType.VarChar).Value = person1;
+
+                adapter.SelectCommand = command;
+                adapterC.SelectCommand = commandC;
+                adapterV.SelectCommand = commandV;
+                adapterP.SelectCommand = commandP;
+
+                // -------DataTable создается чтобы выбранную в combobox строку связать с параметром id
+
+                DataTable tableC = new DataTable();
+                DataTable tableV = new DataTable();
+                DataTable tableP = new DataTable();
+
+                adapterC.Fill(tableC);
+                adapterV.Fill(tableV);
+                adapterP.Fill(tableP);
+
+                int cabinet = tableC.Rows[0].Field<int>("idcabinet"); 
+                int view = tableV.Rows[0].Field<int>("idview");
+                int person = tableP.Rows[0].Field<int>("idperson");
+
+                //-----------------------------------------------------------
+                               
+                //int n = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                string idtechtable = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                string in_numb = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                string name_tech = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+
+                string date_buy = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+
+
+                if (date_buy != "")
+                {
+                    date_buy = DateTime.Parse(date_buy).ToString("yyyyMMdd");
+                    //date_buy.ToShortDateString();
+                }
+                else
+                {
+                    date_buy = null;
+                }
+
+                //MessageBox.Show(idtechtable);
+
+
+                string cost = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                string status = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                string date_write_off = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+
+                if (date_write_off != "")
+                {
+                    date_write_off = DateTime.Parse(date_write_off).ToString("yyyyMMdd");
+                    //date_buy.ToShortDateString();
+                }
+                else
+                {
+                    date_write_off = null;
+                }
+
+                
+                
+
+
+                MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                MySqlCommand command1 = new MySqlCommand("insert `techtable` (`in_number`, `name_tech`, `date_buy`, `cost`, `status`, `date_write_off`, `idcabinet`, `idview`, `idperson`) VALUES (@1U, @2U, @3U, @4U, @5U, @6U, @7U, @8U, @9U)", db.getConnection());
+                command1.Parameters.Add("@0U", MySqlDbType.VarChar).Value = idtechtable;
+                command1.Parameters.Add("@1U", MySqlDbType.VarChar).Value = in_numb;
+                command1.Parameters.Add("@2U", MySqlDbType.VarChar).Value = name_tech;
+                command1.Parameters.Add("@3U", MySqlDbType.VarChar).Value = date_buy;
+                command1.Parameters.Add("@4U", MySqlDbType.VarChar).Value = cost;
+                command1.Parameters.Add("@5U", MySqlDbType.VarChar).Value = status;
+                command1.Parameters.Add("@6U", MySqlDbType.VarChar).Value = date_write_off;
+                command1.Parameters.Add("@7U", MySqlDbType.VarChar).Value = cabinet;
+                command1.Parameters.Add("@8U", MySqlDbType.VarChar).Value = view;
+                command1.Parameters.Add("@9U", MySqlDbType.VarChar).Value = person;
+
+                adapter1.SelectCommand = command1;
+
+
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet, "techtable");
+
+                adapter1.Fill(dataSet, "techtable");
+                dataSet.Tables["techtable"].Clear();
+                adapter.Fill(dataSet, "techtable");
+                DataRow dr = dataSet.Tables[0].NewRow();
+                dataSet.Tables[0].Rows.Add(dr);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = dataSet.Tables["techtable"];
+                dataGridView1.AutoResizeColumns();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
