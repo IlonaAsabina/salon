@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>312</x>
+      <y>32</y>
+      <w>64</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>директор</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>448</x>
+      <y>96</y>
+      <w>96</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>администратор</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>72</x>
+      <y>120</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>клиент</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>176</x>
+      <y>144</y>
+      <w>80</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Авторизация
+--
+имя
+телефон
+пароль
+-
+регистрация
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>144</y>
+      <w>120</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>288</x>
+      <y>288</y>
+      <w>104</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Услуги 
+(просмотр  клиент)
+(редактир админ)
+--
+Код
+Наименование 
+Цена</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>352</x>
+      <y>136</y>
+      <w>64</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>зайти как
+админ</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>208</y>
+      <w>72</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>112</x>
+      <y>152</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>144</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>208</y>
+      <w>120</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;130.0;60.0;130.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>288</y>
+      <w>128</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>104</x>
+      <y>288</y>
+      <w>80</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Заявка клиента
+-
+Услуга
+Мастер
+Оплата
+Ном. Тел.
+Эл.почта
+Дата
+Время</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>344</x>
+      <y>192</y>
+      <w>72</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>зайти как
+персонал</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>184</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;40.0;10.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>200</y>
+      <w>64</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>416</x>
+      <y>288</y>
+      <w>112</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Заявка клиента
+(отметка о
+выполнении)
+-
+услуга
+мастер
+оплата
+дата
+статус выполнения</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>368</x>
+      <y>216</y>
+      <w>96</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;100.0;50.0;100.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>0</x>
+      <y>288</y>
+      <w>80</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Отзывы
+-
+имя
+отзыв
+телефон
+адрес точки</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>32</x>
+      <y>208</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>190.0;10.0;110.0;30.0;10.0;70.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>576</x>
+      <y>112</y>
+      <w>104</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Доставка
+-
+Материалы
+Оборудование
+Общая стоимость
+Время доставки</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>120</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>592</x>
+      <y>224</y>
+      <w>128</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Заявка клиента
+-
+Адрес парикмахерской
+Услуга
+Мастер
+Оплата
+Номер телефона
+Эл.почта
+Дата
+Статус</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>136</y>
+      <w>120</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>168</x>
+      <y>144</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>344</x>
+      <y>144</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>336</x>
+      <y>192</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>296</x>
+      <y>304</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>112</x>
+      <y>288</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>0</x>
+      <y>288</y>
+      <w>88</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>448</x>
+      <y>176</y>
+      <w>64</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Персонал</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>584</x>
+      <y>112</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>red
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
